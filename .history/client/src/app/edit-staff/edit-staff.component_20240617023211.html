@@ -1,0 +1,35 @@
+<form #update="ngForm" (ngSubmit)="handleStaff()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">First Name</label>
+      <input type="text" class="form-control" name="first_name" [(ngModel)]="data.first_name" id="exampleInputEmail1" >
+      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="last_name" [(ngModel)]="data.last_name" id="exampleInputEmail1" >
+        <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+      </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Day Of Birth</label>
+      <input type="date" class="form-control" name="day_of_birth" [ngModel]="data.day_of_birth|date:'yyyy-MM-dd'" (ngModelChange)="data.day_of_birth=$event" id="exampleInputEmail1" >
+      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Sex</label><br>
+        <input type="radio" name="sect" [(ngModel)]="data.sect" [value]="1"> Nam
+        <input type="radio"  name="sect" [(ngModel)]="data.sect" [value]="0">Nữ
+
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Area</label>
+        <select class="form-control" name="area" [(ngModel)]="data.area">
+          <option value="Nam">Nam</option>
+          <option value="Trung">Trung</option>
+          <option value="Bắc">Bắc</option>
+        </select>
+      </div>
+  
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+  </form>

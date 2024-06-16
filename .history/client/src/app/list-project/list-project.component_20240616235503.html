@@ -1,0 +1,87 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Create Project
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">CREATE PROJECT</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form #creProject="ngForm" (ngSubmit)="handleProject(creProject.value)">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name Project</label>
+                  <input type="text" class="form-control" name="name_project" ngModel id="exampleInputEmail1" >
+                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Create Date</label>
+                  <input type="date" class="form-control" name="create_date" ngModel id="exampleInputEmail1" >
+                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Price</label>
+                  <input type="text" class="form-control" name="price" ngModel id="exampleInputEmail1" >
+                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="mb-3">
+                  <label  class="form-label">Leader</label>
+                  <select class="form-control" name="leader" ngModel>
+                    <option *ngFor="let staff of Staffs" value="{{staff.id}}">{{staff.last_name}} {{staff.first_name}}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label  class="form-label">Member</label>
+                  <select class="form-control" ngModel name="member" multiple size="4" >
+                    <option *ngFor="let staff of Staffs" value="{{staff.id}}">
+                      {{staff.last_name}} {{staff.first_name}}
+                    </option>
+                  </select>
+                </div>
+              
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <!-- table  -->
+<hr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Name Project</th>
+        <th scope="col">Create Date</th>
+        <th scope="col">Price</th>
+        <th scope="col">Leader</th>
+        <th scope="col">Member</th>
+        <th scope="col">Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of Projects">
+        <th scope="row">{{project.id}}</th>
+        <td>{{project.name_project}}</td>
+        <td>{{project.create_date | date:'dd/mm/yyyy'}}</td>
+        <td>{{project.price}} VND</td>
+        <td>{{project.leader}}</td>
+        <td>{{project.member}}</td>
+        <td>
+          <button type="button" [routerLink]="['edit/:id']" class="btn btn-success">Update</button>
+          <button type="button" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

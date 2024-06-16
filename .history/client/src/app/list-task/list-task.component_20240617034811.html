@@ -1,0 +1,85 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Create Task
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">CREATE TASK</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #creTask="ngForm" (ngSubmit)="handleTask(creTask.value)">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name Task</label>
+              <input type="text" class="form-control" name="name_task" ngModel id="exampleInputEmail1" >
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">Project</label>
+              <select class="form-control" name="id_project" ngModel>
+                <option *ngFor="let project of Projects" value="{{project.id}}">{{project.name_project}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">Staff</label>
+              <select class="form-control" name="id_staff" ngModel>
+                <option *ngFor="let staff of Staffs" value="{{staff.id}}">{{staff.last_name}} {{staff.first_name}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Status</label><br>
+             <input type="number" name="status" ngModel class="form-control" id="">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Priority</label><br>
+             <input type="number" name="priority" ngModel class="form-control" id="">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Description</label><br>
+              <textarea name="description" ngModel class="form-control" id=""></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ <!-- table  -->
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name Task</th>
+      <th scope="col">ID Project</th>
+      <th scope="col">ID Staff</th>
+      <th scope="col">Descripton</th>
+      <th scope="col">Status</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of Tasks">
+      <th scope="row">{{task.id}}</th>
+      <td>{{task.name_task}}</td>
+      <td>{{task.id_project}}</td>
+      <td>{{task.id_staff}}</td>
+      <td>{{task.description}}</td>
+      <td>{{task.status}}</td>
+      <td>{{task.priority}}</td>
+      <td>
+        <button type="button" [routerLink]="['/project/edit', project.id]" class="btn btn-success">Update</button>
+        <button type="button" (click)="deleted(project.id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

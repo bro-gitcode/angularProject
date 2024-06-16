@@ -1,0 +1,35 @@
+<form #update="ngForm" (ngSubmit)="handleStaff()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">First Name</label>
+      <input type="text" class="form-control" name="first_" [(ngModel)]="data.first_name" id="exampleInputEmail1" >
+      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Create Date</label>
+      <input type="date" class="form-control" name="create_date" [ngModel]="data.create_date|date:'yyyy-MM-dd'" (ngModelChange)="data.create_date=$event" id="exampleInputEmail1" >
+      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Price</label>
+      <input type="text" class="form-control" name="price" [(ngModel)]="data.price" id="exampleInputEmail1" >
+      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    </div>
+    <div class="mb-3">
+      <label  class="form-label">Leader</label>
+      <select class="form-control" name="leader" [(ngModel)]="data.leader">
+        <option *ngFor="let staff of Staffs" value="{{staff.id}}">{{staff.last_name}} {{staff.first_name}}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label  class="form-label">Member</label>
+      <select class="form-control" [(ngModel)]="data.member" name="member" multiple size="4" >
+        <option *ngFor="let staff of Staffs" value="{{staff.id}}">
+          {{staff.last_name}} {{staff.first_name}}
+        </option>
+      </select>
+    </div>
+  
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+  </form>
